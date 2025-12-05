@@ -50,8 +50,8 @@
           });
         }
       }, {
-        accY: 0
-      }
+      accY: 0
+    }
     );
   }
 
@@ -569,41 +569,30 @@
     }
   });
 
-  // window scroll event
-  function stickyMenuUpScroll($targetMenu, $toggleClass) {
-    var lastScrollTop = 0;
-    window.addEventListener(
-      "scroll",
-      function () {
-        var st = window.pageYOffset || document.documentElement.scrollTop;
-        if (st > 500) {
-          if (st > lastScrollTop) {
-            // downscroll code
-            $targetMenu.removeClass($toggleClass);
-            // console.log("down");
-          } else {
-            // upscroll code
-            $targetMenu.addClass($toggleClass);
-            // console.log("up");
-          }
-        } else {
-          $targetMenu.removeClass($toggleClass);
-        }
-        lastScrollTop = st;
-      },
-      false
-    );
+  function stickyMenuAlways($targetMenu, $toggleClass) {
+    window.addEventListener("scroll", function () {
+      var st = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (st > 500) {
+        // always show after 500px
+        $targetMenu.addClass($toggleClass);
+      } else {
+        // hide near top
+        $targetMenu.removeClass($toggleClass);
+      }
+    });
   }
-  stickyMenuUpScroll($(".sticky-header--normal"), "active");
+
+  stickyMenuAlways($(".sticky-header--normal"), "active");
 
   let scrollTop = $('.scroll-to-top path');
   if (scrollTop.length) {
     var e = document.querySelector(".scroll-to-top path"),
       t = e.getTotalLength();
     (e.style.transition = e.style.WebkitTransition = "none"),
-    (e.style.strokeDasharray = t + " " + t),
-    (e.style.strokeDashoffset = t),
-    e.getBoundingClientRect(),
+      (e.style.strokeDasharray = t + " " + t),
+      (e.style.strokeDashoffset = t),
+      e.getBoundingClientRect(),
       (e.style.transition = e.style.WebkitTransition =
         "stroke-dashoffset 10ms linear");
     var o = function () {
@@ -627,23 +616,23 @@
   $(window).on("resize", function () {
     adhvan_stretch();
   });
-  (function(){
+  (function () {
     if (!('IntersectionObserver' in window)) {
       // fallback: reveal all
       document.querySelectorAll('.service-card').forEach(el => el.classList.add('in-view'));
       return;
     }
 
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
           io.unobserve(entry.target);
         }
       });
-    }, {threshold: 0.12});
+    }, { threshold: 0.12 });
 
-    document.querySelectorAll('.service-card[data-animate]').forEach(el=>{
+    document.querySelectorAll('.service-card[data-animate]').forEach(el => {
       io.observe(el);
     });
   })();
