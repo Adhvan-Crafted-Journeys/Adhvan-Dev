@@ -5339,7 +5339,7 @@ input[type="number"] {
 .testimonials-two {
   position: relative;
   z-index: 1;
-  padding: 25px 0 75px;
+  padding: 25px 0 200px;
 }
 
 @media (max-width: 991px) {
