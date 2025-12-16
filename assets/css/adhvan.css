@@ -3558,17 +3558,6 @@ h6 {
   margin: 0;
 }
 
-.testimonials-two__author__dec {
-  font-family: var(--adhvan-font);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 144%;
-  text-align: center;
-  color: var(--adhvan-text);
-  text-transform: capitalize;
-}
-
 @keyframes ripple {
   70% {
     box-shadow: 0 0 0 40px rgba(10, 165, 205, 0);
