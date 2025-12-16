@@ -5452,13 +5452,15 @@ input[type="number"] {
   height: auto;
   background: var(--adhvan-white);
   box-shadow: 0 35px 70px rgba(var(--adhvan-base-rgb, 226, 164, 117), 0.1);
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   border-radius: 30px;
   padding: 30px;
   transition: all 0.4s ease-in-out;
 }
 
 .testimonials-two__item:hover {
-  box-shadow: 0 35px 70px rgba(var(--adhvan-base-rgb, 226, 164, 117), 0.1);
+  transform: translateY(-3px) scale(1);
+  box-shadow: 0 10px 10px rgb(var(--adhvan-base-rgb), 0.3);
 }
 
 .testimonials-two__icon {
@@ -6344,11 +6346,18 @@ input[type="number"] {
 
 .main-footer--two .main-footer__element--two {
   position: absolute;
+  top: 10%;
+  right: 10%;
+}
+
+.main-footer--two .main-footer__element--one {
+  position: absolute;
   top: 5%;
   left: 18%;
 }
 
-.main-footer--two .main-footer__element--two img {
+.main-footer--two .main-footer__element--two img, 
+.main-footer--two .main-footer__element--one img {
   animation: movebounce2 3s ease-in-out infinite;
 }
 
