@@ -4280,3 +4280,23 @@ h6 {
     transform: translate3d(-220px, 0, 0);
   }
 }
+
+/* ===========================
+   Google Map Section
+   =========================== */
+
+/* Tablet & Mobile Responsive */
+@media (max-width: 768px) {
+    .map-wrapper iframe {
+        height: 350px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .map-wrapper iframe {
+        height: 280px;
+        border-radius: 8px;
+    }
+
+}
