@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adhvancraftedjourneys.netlify.app/sitemap.xml
+Sitemap: https://adhvancraftedjourneys.cloud/sitemap.xml
