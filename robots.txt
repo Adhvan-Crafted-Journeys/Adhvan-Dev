@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adhvancraftedjourneys.com/sitemap.xml
+Sitemap: https://www.adhvancraftedjourneys.com/sitemap.xml
