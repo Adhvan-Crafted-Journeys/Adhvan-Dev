@@ -3268,15 +3268,12 @@ h6 {
 /*--------------------------------------------------------------
 # Gallery
 --------------------------------------------------------------*/
+
 .gallery-two {
   position: relative;
   z-index: 1;
-  padding: 30px 0;
+  padding: 60px 0;
   background-color: rgba(var(--adhvan-base-rgb), 0.06);
-
-  @media (max-width: 767px) {
-    padding: 80px 0;
-  }
 }
 
 .gallery-two .container-fluid {
@@ -3285,69 +3282,71 @@ h6 {
   margin-right: auto;
 }
 
+/* Item */
 .gallery-two__item {
   position: relative;
-  z-index: 1;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
+/* Image wrapper */
 .gallery-two__image {
   position: relative;
-  z-index: 1;
   overflow: hidden;
   border-radius: 24px;
+  aspect-ratio: 3 / 4;
+  /* Clean portrait ratio */
 }
 
+/* Image */
 .gallery-two__image img {
-  -o-object-fit: cover;
-  object-fit: cover;
-  width: 100%;
-  border-radius: 24px;
-}
-
-.gallery-two__image::after {
-  content: "";
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: linear-gradient(180.18deg,
-      rgba(255, 255, 255, 0) 27.57%,
-      rgba(0, 0, 0, 0.8) 81.4%);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s ease-in-out;
+  object-fit: cover;
+  border-radius: 24px;
+  transition: transform 0.6s ease;
 }
 
+/* Hover zoom */
+.gallery-two__item:hover img {
+  transform: scale(1.08);
+}
+
+/* Gradient overlay */
+.gallery-two__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0.75) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Content */
 .gallery-two__content {
   position: absolute;
-  bottom: 35px;
-  left: 23px;
-  right: 23px;
+  bottom: 30px;
+  left: 20px;
+  right: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: transparent;
   border-radius: 16px;
   padding: 10px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.23);
-  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.4s ease;
+  z-index: 2;
 }
 
+/* Glass effect */
 .gallery-two__content::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--adhvan-white);
-  opacity: 0.17;
-  -webkit-backdrop-filter: blur(310.15px);
-  backdrop-filter: blur(310.15px);
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
   border-radius: 16px;
   z-index: -1;
 }
@@ -3355,69 +3354,61 @@ h6 {
 .gallery-two__title {
   margin: 0;
   font-family: var(--adhvan-heading-font);
-  font-style: normal;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 133%;
-  text-transform: capitalize;
-  color: var(--adhvan-white);
+  font-size: 22px;
+  color: #fff;
 }
 
 .gallery-two__link {
-  width: 43px;
-  height: 43px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  font-size: 22px;
-  line-height: 1;
-  color: var(--adhvan-white);
   background-color: var(--adhvan-base);
-}
-
-.gallery-two__link i {
-  height: 22px;
+  color: #fff;
+  transition: 0.3s ease;
 }
 
 .gallery-two__link:hover {
   background-color: var(--adhvan-black);
-  color: var(--adhvan-white);
 }
 
-.gallery-two__carousel .gallery-two__item {
-  transition: transform 0.3s ease;
+/* ======================================
+   Owl Carousel Center Effect (Clean)
+====================================== */
+
+/* Default (all items) */
+.gallery-two__carousel .owl-item .gallery-two__item {
+  transform: scale(0.85);
+  opacity: 0.5;
 }
 
+/* Side active items */
 .gallery-two__carousel .owl-item.active .gallery-two__item {
-  transform: scale(1, 0.7);
+  transform: scale(0.92);
+  opacity: 0.8;
 }
 
-.gallery-two__carousel .owl-item.active+.owl-item.active .gallery-two__item {
-  transform: scale(1, 0.8);
-}
-
-.gallery-two__carousel .owl-item.cloned.active .gallery-two__item {
-  transform: scale(1, 0.7);
-}
-
-.gallery-two__carousel .center .gallery-two__item {
-  transform: scale(1, 1) !important;
-}
-
-.gallery-two__carousel .center~.active+.active .gallery-two__item {
-  transform: scale(1, 0.7) !important;
-}
-
-.gallery-two__carousel .center .gallery-two__image::after {
-  visibility: visible;
+/* Center item */
+.gallery-two__carousel .owl-item.center .gallery-two__item {
+  transform: scale(1);
   opacity: 1;
 }
 
-.gallery-two__carousel .center .gallery-two__content {
-  visibility: visible;
+/* Show overlay on center */
+.gallery-two__carousel .owl-item.center .gallery-two__image::after {
   opacity: 1;
+}
+
+.gallery-two__carousel .owl-item.center .gallery-two__content {
+  opacity: 1;
+}
+
+/* Important: prevent clipping */
+.gallery-two__carousel .owl-item {
+  overflow: visible;
 }
 
 /*--------------------------------------------------------------
@@ -3466,7 +3457,7 @@ h6 {
 .testimonials-two {
   position: relative;
   z-index: 1;
-  padding: 25px 0 200px;
+  padding: 25px 0 150px;
 }
 
 @media (max-width: 991px) {
@@ -4202,30 +4193,67 @@ h6 {
   margin: 0;
 }
 
-.carousel-inner {
-  width: 85% !important;
-  margin: 0 auto !important;
+/* Main Width */
+.swiper {
+  position: relative;
+  width: 85%;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  /* space for arrows */
+  overflow: visible;
 }
 
-.carousel-control-next,
-.carousel-control-prev {
-  width: 5% !important;
+/* Card Style */
+.swiper-slide {
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.carousel-control-prev-btn,
-.carousel-control-next-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--adhvan-base);
-  padding: 10px;
+.swiper-slide img {
+  width: 100%;
+  border-radius: 18px;
+  transition: transform 0.6s ease;
+}
+
+/* Center Slide Bigger */
+.swiper-slide-active {
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+/* Hover Zoom Effect */
+.swiper-slide:hover img {
+  transform: scale(1.08);
+}
+
+/* Bottom Arrow Container Style */
+.swiper-button-next,
+.swiper-button-prev {
+  top: auto;
+  bottom: 10px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
+  background: #1a5d4b;
+  /* Adhvan green */
+  color: white;
+  transition: all 0.3s ease;
 }
 
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
-  width: 1rem !important;
-  height: 1rem !important;
+/* Move both arrows toward center */
+.swiper-button-prev {
+  left: 48%;
+  transform: translateX(-60px);
+}
+
+.swiper-button-next {
+  right: 48%;
+  transform: translateX(60px);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 @-webkit-keyframes trans1 {
@@ -4324,7 +4352,7 @@ h6 {
 # Privacy Policy
 --------------------------------------------------------------*/
 
-.main-footer__bottom .container{
+.main-footer__bottom .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -4337,7 +4365,7 @@ h6 {
 .privacy-policy {
   padding: 60px 0;
   background-image: url(../images/backgrounds/travel-doodle.webp);
-  background-color: rgba(255,255,255,0.75);
+  background-color: rgba(255, 255, 255, 0.75);
   background-blend-mode: lighten;
 }
 
@@ -4428,4 +4456,32 @@ h6 {
   .privacy-policy__subtitle {
     font-size: 16px;
   }
+}
+
+.google-review-btn {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.google-review-btn a {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #1a5d4b;
+  /* match your green theme */
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: 0.3s ease;
+}
+
+.google-review-btn a:hover {
+  background-color: #13463a;
+  transform: translateY(-3px);
+}
+
+.google-review-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
 }
